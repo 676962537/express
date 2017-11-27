@@ -1,19 +1,27 @@
 <template>
-    <div @click="fn">mahenan</div>
+    <div>
+        <div @click="fn">mahenan</div>
+        <div v-for="item in list" v-text="item.name"></div>
+    </div>
 </template>
 <script>
-    import axios from "axios"
+    import axios from "axios";
     export default {
         created(){
-            alert("mahenan");
+        },
+        data(){
+          return {
+              list:[]
+          }
         },
         methods:{
             fn(){
                 var obj={
                     "mahenan":"mahenanhahaha"
                 };
+                var that=this;
                 axios.post("/post",obj).then(function (res) {
-                    console.log(res.data);
+                    that.list=that.list.concat(res.data.data.list);
                 })
             }
         }

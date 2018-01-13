@@ -18,6 +18,15 @@ module.exports = {
             // template:path.resolve(__dirname, 'client/index.html')
             template:path.resolve(__dirname, 'client/index.ejs')
             // hash:true
+        }),
+        new HtmlWebpackPlugin({
+            title: '<%= title %>',
+            title1: '<%= title1 %>',
+            filename: './views/index2.html',
+            chunks:'[name]',
+            // template:path.resolve(__dirname, 'client/index.html')
+            template:path.resolve(__dirname, 'client/index.ejs')
+            // hash:true
         })
     ],
     resolve: {

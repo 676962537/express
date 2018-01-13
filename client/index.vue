@@ -1,7 +1,9 @@
 <template>
     <div>
-        <div @click="fn">mahenan</div>
-        <div v-for="item in list" v-text="item.name"></div>
+        <div @click="fn">添加</div>
+        <div @click="show">展示所有</div>
+        <!--<div @click="add">添加</div>-->
+        <div v-for="item in list" v-text="item.place"></div>
     </div>
 </template>
 <script>
@@ -15,13 +17,30 @@
           }
         },
         methods:{
+            add(){
+                var obj={
+                    "mahenan":"陈红"
+                }
+                axios.post("/add",obj).then(function (res) {
+
+                })
+            },
             fn(){
                 var obj={
                     "mahenan":"mahenanhahaha"
                 };
                 var that=this;
                 axios.post("/post",obj).then(function (res) {
-                    that.list=that.list.concat(res.data.data.list);
+                    that.list=that.list.concat(res.data);
+                })
+            },
+            show(){
+                var obj={
+                    "mahenan":"mahenanhahaha"
+                };
+                var that=this;
+                axios.post("/show",obj).then(function (res) {
+                    that.list=that.list.concat(res.data);
                 })
             }
         }
